@@ -90,70 +90,66 @@ const Leads = () => {
       </div>
 
       {/* Table */}
-      <div className="bg-white shadow-md rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-600">
-            <tr>
-              <th className="p-4 text-left">Name</th>
-              <th className="p-4 text-left">Email</th>
-              <th className="p-4 text-left">Source</th>
-              <th className="p-4 text-left">Created</th>
-              <th className="p-4 text-right">Action</th>
-            </tr>
-          </thead>
+<div className="bg-white shadow-md rounded-xl overflow-hidden">
 
-          <tbody>
-            {filteredLeads?.map((lead) => (
-              <tr
-                key={lead.id}
-                className="border-t border-slate-200  hover:bg-gray-50 transition"
+  {/* Mobile scroll wrapper */}
+  <div className="overflow-x-auto">
+    <table className="min-w-[800px] w-full text-sm">
+      
+      <thead className="bg-gray-50 text-gray-600">
+        <tr>
+          <th className="p-4 text-left">Name</th>
+          <th className="p-4 text-left">Email</th>
+          <th className="p-4 text-left">Source</th>
+          <th className="p-4 text-left">Created</th>
+          <th className="p-4 text-right">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {filteredLeads.map((lead) => (
+          <tr
+            key={lead.id}
+            className="border-t border-slate-200 hover:bg-gray-50 transition"
+          >
+            <td className="p-4 font-medium text-gray-800">{lead.name}</td>
+            <td className="p-4 text-gray-600">{lead.email}</td>
+
+            <td className="p-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${badgeStyle(lead.source)}`}>
+                {lead.source}
+              </span>
+            </td>
+
+            <td className="p-4 text-gray-600">
+              {lead.createdAt.split("T")[0]}
+            </td>
+
+            <td className="p-4 text-right">
+              <button
+                onClick={() => setSelectedLead(lead)}
+                className="text-blue-600 hover:bg-slate-200 rounded-lg px-2 py-1 flex items-center gap-1 font-medium"
               >
-                <td className="p-4 font-medium text-gray-800">
-                  {lead.name}
-                </td>
-                <td className="p-4 text-gray-600">{lead.email}</td>
+                <FaRegEye />
+                View
+              </button>
+            </td>
+          </tr>
+        ))}
 
-                <td className="p-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${badgeStyle(
-                      lead.source
-                    )}`}
-                  >
-                    {lead.source}
-                  </span>
-                </td>
+        {filteredLeads.length === 0 && (
+          <tr>
+            <td colSpan="5" className="p-6 text-center text-gray-500">
+              No leads found
+            </td>
+          </tr>
+        )}
+      </tbody>
 
-                <td className="p-4 text-gray-600">{lead?.createdAt.split('T')[0]}</td>
+    </table>
+  </div>
+</div>
 
-                <td className="p-4 flex justify-end  ">
-                    <div className='text-blue-600 hover:bg-slate-200 rounded-lg px-2 py-1 flex  font-medium  items-center gap-1 '>
-                           <span><FaRegEye/></span>
-                            <button
-                    onClick={() => setSelectedLead(lead)}
-                    
-                  >
-                    View
-                  </button>
-                    </div>
-                    
-                 
-                </td>
-              </tr>
-            ))}
-
-            {filteredLeads.length === 0 && (
-              <tr>
-                <td
-                  colSpan="5"
-                  className="p-6 text-center text-gray-500"
-                >
-                  No leads found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
       <LeadModal 
   lead={selectedLead} 
   onClose={() => setSelectedLead(null)} 

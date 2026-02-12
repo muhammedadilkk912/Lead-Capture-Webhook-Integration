@@ -3,6 +3,7 @@ import { MdPersonAddAlt } from "react-icons/md";
 import axiosInstance from '../Confiq/Axios';
 import { useNavigate } from 'react-router-dom';
 import { useLoader } from '../context/LoaderContext';
+import toast from 'react-hot-toast';
 
 
 
@@ -75,9 +76,11 @@ const validation = () => {
         console.log("postiong the data")
         const response =await axiosInstance.post('/addlead',form)
         console.log("result got it",response)
+        toast.success('lead submitted successfully')
         navigate('/leads')
         
       } catch (error) {
+        toast.error(error?.response?.data?.message)
         console.log("error in submitting ",error)
       }finally{
         hideLoader()

@@ -4,10 +4,13 @@ import Layout from './Component/Layout'
 import Home from './Pages/Home'
 import Leads from './Pages/Leads'
 import AddLead from './Pages/AddLead'
+import { Toaster } from "react-hot-toast";
+
 
 const App = () => {
   return (
     <div>
+      <Toaster/>
       <BrowserRouter>
       <Routes >
         <Route path='/' element={<Layout/>}>
