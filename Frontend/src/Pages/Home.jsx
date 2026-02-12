@@ -70,11 +70,10 @@ console.log("status",status)
       {/* Hero Section */}
       <section className=" rounded-xl p-8 min-h-[40vh] flex-col justify-center items-center text-center">
         <h1 className="text-4xl font-bold text-gray-800">
-          Capture and Manage Leads Easily
+Lead Management Dashboard
         </h1>
-        <p className="mt-3 font-semibold text-gray-600 max-w-2xl mx-auto">
-          Collect new leads, track their source, and manage everything from a
-          clean and simple dashboard.
+        <p className="my-3 font-semibold text-gray-600 max-w-2xl mx-auto">
+         Track, organize, and automate your leads in one simple platform.
         </p>
 
         <div className="mt-6 flex justify-center gap-4">
@@ -147,7 +146,7 @@ console.log("status",status)
     <table className="min-w-[600px] w-full border-collapse text-sm">
 
       <thead>
-        <tr className="text-left text-gray-600 font-medium border-b">
+        <tr className="text-left text-gray-600 font-medium border-slate-400 border-b">
           <th className="p-3">Name</th>
           <th className="p-3">Email</th>
           <th className="p-3">Source</th>
@@ -159,7 +158,7 @@ console.log("status",status)
         {recentLeads.map((lead) => (
           <tr
             key={lead.id}
-            className="border-t hover:bg-gray-50 transition"
+            className="border-t border-slate-400 hover:bg-gray-50 transition"
           >
             <td className="p-3 font-medium text-gray-800">
               {lead.name}
